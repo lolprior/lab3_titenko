@@ -9,7 +9,7 @@ class StoriesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final stories = Provider.of<StoriesFeed>(context).stories;
-    print(stories);
+    // print(stories);
     return ListView(
       // physics: ClampingScrollPhysics(),
       scrollDirection: Axis.horizontal,
@@ -33,27 +33,43 @@ class StoriesList extends StatelessWidget {
           ),
         ]),
         Container(
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            itemCount: stories.length,
-            itemBuilder: (context, index) => Hero(
-              tag: stories[index].id,
-              child: GestureDetector(
-                child: StoryIcon(
-                  false,
-                  id: index,
-                  width: 70,
-                  height: 70,
-                  radius: 50,
-                ),
-                onTap: () {
-                  Text("Заглушка");
-                },
-              ),
-            ),
-          ),
-        )
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemCount: stories.length,
+                itemBuilder: (context, index) {
+                  return MultiProvider(
+                      providers: [
+                        ChangeNotifierProvider.value(
+                          value: stories[index],
+                        )
+                      ],
+                      child: StoryIcon(false,
+                          id: index, width: 70, height: 70, radius: 50));
+                })),
+
+        // child: ListView.builder(
+
+        //   scrollDirection: Axis.horizontal,
+        //   shrinkWrap: true,
+        //   itemCount: stories.length,
+        //   itemBuilder: (context, index) => Hero(
+        //     tag: stories[index].id,
+        //     child: GestureDetector(
+        //       child: StoryIcon(
+        //         false,
+        //         id: index,
+        //         width: 70,
+        //         height: 70,
+        //         radius: 50,
+        //       ),
+        //       onTap: () {
+        //         Text("Заглушка");
+        //       },
+        // ),
+        // ),
+        // ),
+        // )
       ],
     );
   }

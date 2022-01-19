@@ -30,6 +30,8 @@ dependencies:
   image_size_getter: ^0.2.0
   flappy_search_bar: ^1.7.2
   provider: ^4.3.2+2
+
+  shared_preferences: ^0.5.12+4
  
 
     

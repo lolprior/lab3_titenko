@@ -33,6 +33,10 @@ class FeedModelProvider with ChangeNotifier {
   ];
   final List<PostModel> _favoritePosts = [];
 
+  List<PostModel> getAllpPosts() {
+    return _posts;
+  }
+
   void add(PostModel post) {
     _posts.add(post);
     notifyListeners();
